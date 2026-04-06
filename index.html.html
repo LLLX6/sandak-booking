@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-mode="female" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سندك الافتراضي | النسخة النهائية</title>
+  <meta name="description" content="سندك الافتراضي - تجربة حجز أنيقة وسلسة مع إرسال مباشر إلى واتساب وتخصيص رجل/أنثى." />
+  <style>
+    :root {
+      --bg-1: #fff8fc;
+      --bg-2: #eef8ff;
+      --card: rgba(255,255,255,.84);
+      --card-strong: rgba(255,255,255,.96);
+      --text: #1f2434;
+      --muted: #6a738b;
+      --line: rgba(95, 109, 146, .14);
+      --primary: #d95c93;
+      --primary-2: #8f82ff;
+      --accent: #33b7ae;
+      --success: #13956d;
+      --danger: #cf5468;
+      --warning: #d48710;
+      --shadow: 0 18px 60px rgba(111, 103, 172, .12);
+      --shadow-sm: 0 10px 26px rgba(111, 103, 172, .08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --field-bg: rgba(248, 250, 255, .98);
+      --chip: rgba(255,255,255,.76);
+      --chip-strong: rgba(255,255,255,.9);
+      --hero-ring: rgba(217,92,147,.14);
+      --nav-bg: rgba(255,255,255,.72);
+    }
+
+    :root[data-mode="male"] {
+      --bg-1: #edf5ff;
+      --bg-2: #eefaf5;
+      --card: rgba(255,255,255,.86);
+      --card-strong: rgba(255,255,255,.97);
+      --text: #1e2632;
+      --muted: #667286;
+      --line: rgba(73, 99, 138, .14);
+      --primary: #2d70f2;
+      --primary-2: #1aa090;
+      --accent: #628dff;
+      --shadow: 0 18px 60px rgba(43, 89, 162, .12);
+      --shadow-sm: 0 10px 26px rgba(43, 89, 162, .08);
+      --field-bg: rgba(247, 250, 255, .98);
+      --chip: rgba(255,255,255,.78);
+      --chip-strong: rgba(255,255,255,.92);
+      --hero-ring: rgba(45,112,242,.12);
+    }
+
+    :root[data-theme="dark"] {
+      --bg-1: #131724;
+      --bg-2: #171c2c;
+      --card: rgba(21, 25, 38, .88);
+      --card-strong: rgba(20, 24, 37, .97);
+      --text: #edf1ff;
+      --muted: #b4bdd6;
+      --line: rgba(193, 200, 225, .11);
+      --field-bg: rgba(29, 34, 52, .98);
+      --chip: rgba(255,255,255,.05);
+      --chip-strong: rgba(255,255,255,.08);
+      --nav-bg: rgba(16, 20, 31, .8);
+      --shadow: 0 18px 60px rgba(0,0,0,.42);
+      --shadow-sm: 0 10px 26px rgba(0,0,0,.28);
+    }
+
+    :root[data-theme="dark"][data-mode="female"] {
+      --primary: #ff8ab8;
+      --primary-2: #a596ff;
+      --accent: #58d1c9;
+      --hero-ring: rgba(255,138,184,.12);
+    }
+
+    :root[data-theme="dark"][data-mode="male"] {
+      --primary: #75a6ff;
+      --primary-2: #4bc7b8;
+      --accent: #8baeff;
+      --hero-ring: rgba(117,166,255,.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 10%, var(--hero-ring), transparent 22%),
+        radial-gradient(circle at 8% 90%, rgba(51,183,174,.08), transparent 20%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      transition: background .25s ease, color .25s ease;
+    }
+
+    button, input, textarea, select { font-family: inherit; }
+
+    .page {
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      padding: 20px 18px 42px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      background: var(--nav-bg);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      font-size: 26px;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .brand-text { min-width: 0; }
+
+    .brand-title {
+      margin: 0;
+      font-size: 1.18rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      margin: 6px 0 0;
+      font-size: .93rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 54vw;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .mode-btn,
+    .nav-btn,
+    .btn {
+      border: none;
+      cursor: pointer;
+      transition: .18s ease;
+      font-weight: 800;
+    }
+
+    .mode-btn {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .mode-btn.active {
+      background: var(--chip-strong);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .icon-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: var(--chip);
+      color: var(--text);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .icon-btn:hover,
+    .nav-btn:hover,
+    .btn:hover,
+    .card-option:hover,
+    .time-chip:hover,
+    .faq-head:hover {
+      transform: translateY(-1px);
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 18px 0;
+    }
+
+    .nav-btn {
+      padding: 12px 18px;
+      border-radius: 16px;
+      background: var(--chip);
+      color: var(--muted);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn {
+      padding: 13px 18px;
+      border-radius: 16px;
+      font-size: .98rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary {
+      background: var(--chip);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid color-mix(in srgb, var(--primary) 34%, var(--line));
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+      box-shadow: 0 14px 36px rgba(37,211,102,.18);
+    }
+
+    .view {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      padding: 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.14fr .86fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-main {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: -80px;
+      top: -90px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--hero-ring), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--primary);
+      border: 1px solid var(--line);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      margin: 0 0 12px;
+      font-size: clamp(1.55rem, 2.3vw + 1rem, 2.45rem);
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .hero-desc,
+    .muted,
+    .small-note,
+    .faq-answer,
+    .policy-list,
+    .step-subtitle,
+    .inline-help {
+      color: var(--muted);
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .hero-actions,
+    .feature-grid,
+    .plans-grid,
+    .how-grid,
+    .options-grid,
+    .time-grid,
+    .actions-row,
+    .summary-grid,
+    .faq-list,
+    .note-boxes {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .feature-grid,
+    .plans-grid,
+    .how-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .feature-card,
+    .plan-card,
+    .how-card,
+    .card-option,
+    .summary-item,
+    .faq-item,
+    .info-card {
+      background: var(--card-strong);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mini-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      font-size: 21px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 12px;
+    }
+
+    .section-title,
+    .feature-title,
+    .plan-title,
+    .how-title,
+    .step-title,
+    .summary-title {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+      font-weight: 800;
+    }
+
+    .price-pill,
+    .step-pill,
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--primary);
+      border: 1px solid var(--line);
+      font-weight: 800;
+      font-size: .92rem;
+    }
+
+    .wizard-wrap {
+      width: min(100%, 760px);
+      margin: 0 auto;
+    }
+
+    .progress {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 11px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      transition: width .22s ease;
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 800;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dot.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .dot.done {
+      background: rgba(19,149,109,.12);
+      color: var(--success);
+      border-color: rgba(19,149,109,.18);
+    }
+
+    .step-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .options-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card-option {
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .card-option.active {
+      border-color: color-mix(in srgb, var(--primary) 40%, var(--line));
+      box-shadow: 0 18px 42px rgba(0,0,0,.08);
+    }
+
+    .option-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .option-main {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .option-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, #fff), color-mix(in srgb, var(--primary-2) 12%, #fff));
+      color: var(--primary);
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .option-label {
+      font-weight: 800;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .option-desc {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.8;
+    }
+
+    .radio {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      position: relative;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .card-option.active .radio::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .time-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .time-chip {
+      border: 1px solid var(--line);
+      background: var(--card-strong);
+      color: var(--text);
+      border-radius: 18px;
+      padding: 16px 12px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: .18s ease;
+    }
+
+    .time-chip.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .fields {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-weight: 800;
+      font-size: .96rem;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--field-bg);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      outline: none;
+      transition: .18s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: color-mix(in srgb, var(--primary) 44%, var(--line));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .counter {
+      text-align: left;
+      direction: ltr;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .summary-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: .93rem;
+    }
+
+    .summary-highlight {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 10%, var(--card-strong)), color-mix(in srgb, var(--primary-2) 10%, var(--card-strong)));
+    }
+
+    .faq-list {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-item {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .faq-head {
+      width: 100%;
+      text-align: right;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      padding: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 1rem;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 18px 18px;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .policy-list {
+      padding-right: 18px;
+      margin: 14px 0 0;
+    }
+
+    .policy-list li {
+      margin-bottom: 10px;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 35;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 14px 0 6px;
+      font-size: .92rem;
+    }
+
+    .toast {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-12px);
+      min-width: min(92vw, 320px);
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: var(--card-strong);
+      color: var(--text);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      text-align: center;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 90;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 980px) {
+      .hero,
+      .feature-grid,
+      .plans-grid,
+      .how-grid,
+      .options-grid,
+      .time-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 14px 14px 90px; }
+      .topbar {
+        position: static;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .brand-subtitle {
+        max-width: 100%;
+        white-space: normal;
+      }
+      .topbar-actions {
+        justify-content: stretch;
+      }
+      .topbar-actions > * {
+        flex: 1 1 auto;
+      }
+      .nav-row {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+      .nav-row::-webkit-scrollbar { height: 6px; }
+      .nav-row::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+      .hero,
+      .feature-grid,
+      .plans-grid,
+      .how-grid,
+      .options-grid,
+      .time-grid {
+        grid-template-columns: 1fr;
+      }
+      .actions-row {
+        flex-direction: column;
+      }
+      .actions-row .btn {
+        width: 100%;
+      }
+      .floating-whatsapp {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+      }
+      .floating-whatsapp .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon" id="brandIcon">🤍</div>
+        <div class="brand-text">
+          <h1 class="brand-title" id="brandTitle">سندكِ الافتراضي</h1>
+          <p class="brand-subtitle" id="brandSubtitle">رحلة حجز أنعم، أوضح، وأسرع — مع إرسال مباشر إلى واتساب في النهاية.</p>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="mode-switch" aria-label="اختيار الجنس">
+          <button class="mode-btn active" id="femaleBtn">أنثى</button>
+          <button class="mode-btn" id="maleBtn">رجل</button>
+        </div>
+        <button class="icon-btn" id="themeBtn" title="فاتح / داكن">🌓</button>
+        <button class="btn btn-primary" id="startBtn">ابدئي الآن</button>
+      </div>
+    </header>
+
+    <nav class="nav-row" id="navRow">
+      <button class="nav-btn active" data-tab="home">الرئيسية</button>
+      <button class="nav-btn" data-tab="book">الحجز</button>
+      <button class="nav-btn" data-tab="faq">الأسئلة الشائعة</button>
+      <button class="nav-btn" data-tab="policy">سياسة الاستخدام</button>
+    </nav>
+
+    <main class="view" id="view"></main>
+
+    <footer class="footer" id="footerText"></footer>
+  </div>
+
+  <div class="floating-whatsapp">
+    <button class="btn btn-whatsapp" id="quickWhatsappBtn">💬 واتساب مباشر</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const WHATSAPP_NUMBER = "96892661218";
+
+    const STORAGE = {
+      mode: "sandak_mode_v2",
+      theme: "sandak_theme_v2",
+      tab: "sandak_tab_v2",
+      draft: "sandak_draft_v2"
+    };
+
+    const COPY = {
+      female: {
+        brandTitle: "سندكِ الافتراضي",
+        brandIcon: "🤍",
+        footer: "سندكِ الافتراضي — خصوصيتكِ محفوظة، وكل ما تكتبينه يبقى على جهازكِ حتى تقرري الإرسال بنفسكِ عبر واتساب.",
+homePill: "أمان • احتواء • دعم راقٍ",
+        start: "ابدئي الآن",
+        contact: "تواصلي مباشرة",
+        planTitle: "طرق التواصل المتاحة",
+        howTitle: "كيف تسير التجربة؟",
+        how1: "اختيار نوع الدعم",
+        how1d: "ابدئي بتحديد نوع الجلسة أو نوع المساندة التي تحتاجينها.",
+        how2: "استكمال الحجز",
+        how2d: "اختاري طريقة التواصل والوقت المناسب وأجيبي عن الأسئلة الأساسية.",
+        how3: "إرسال مباشر",
+        how3d: "في النهاية يظهر لكِ الملخص داخل نفس الصفحة، ثم ينتقل مباشرة إلى واتساب.",
+        step1: "اختاري نوع الدعم أو الخدمة",
+        step2: "كيف تفضلين التواصل؟",
+        step3: "ما الوقت الأنسب لكِ؟",
+        step4: "أجيبي عن ثلاث نقاط قصيرة",
+        step5: "اكتبي ملاحظتكِ الخاصة",
+        step6: "اسمكِ أو كنيتكِ",
+        step7: "الملخص النهائي قبل الإرسال",
+        q1: "ما أكثر شيء تحتاجينه من الجلسة؟",
+        q2: "هل مررتِ بتجربة مشابهة من قبل؟",
+        q3: "ما هو شعورك الآن؟",
+        noteLabel: "ملاحظتكِ الخاصة (اختياري)",
+        nameLabel: "اسمكِ أو كنيتكِ (اختياري)",
+        notePlaceholder: "أي تفاصيل أو ظروف أو نقاط تحبين إضافتها...",
+        namePlaceholder: "مثال: أمل / ريم / اسم مختصر...",
+        visitor: "زائرة",
+        summaryIntro: "هذا ملخصكِ النهائي. عند الضغط على زر الإرسال سيتم فتح واتساب مع الرسالة مكتوبة تلقائيًا.",
+        summaryService: "نوع الخدمة المطلوبة",
+        summaryMethod: "طريقة التواصل",
+        summaryTime: "الوقت المناسب",
+        summaryQ1: "أكثر شيء تحتاجينه",
+        summaryQ2: "هل مررتِ بتجربة مشابهة؟",
+        summaryQ3: "شعوركِ الآن",
+        summaryNote: "ملاحظتكِ الخاصة",
+        summaryName: "الاسم أو الكنية",
+        next: "التالي",
+        back: "رجوع",
+        finish: "إرسال إلى واتساب الآن",
+        newBooking: "بدء حجز جديد",
+        quickWhats: "💬 واتساب مباشر",
+        faqTitle: "الأسئلة الشائعة",
+        policyTitle: "سياسة الاستخدام",
+        policy1: "المنصة للدعم والمساندة العامة وليست بديلًا عن الجهات الطبية أو النفسية المختصة.",
+        policy2: "البيانات تبقى على جهازكِ داخل المتصفح، ولا تُرسل إلا عند الضغط على زر واتساب.",
+        policy3: "يمكنكِ إكمال الخطوات أو التراجع أو إعادة الحجز بسهولة في أي وقت.",
+        emergency: "إذا كانت الحالة طارئة أو فيها أذى للنفس أو للآخرين، تواصلي فورًا مع جهة مختصة أو شخص موثوق قريب منكِ.",
+        toastSaved: "تم حفظ اختياركِ والمتابعة.",
+        toastCopied: "تم نسخ الملخص.",
+        toastWhatsapp: "تم فتح واتساب مع الرسالة الجاهزة.",
+        toastQuestions: "يرجى الإجابة على جميع الأسئلة أولًا.",
+        toastNoData: "ابدئي تعبئة الحجز أولًا.",
+        toastReset: "تمت إعادة الحجز من البداية.",
+        quickCopy: "نسخ الملخص",
+        statusReady: "الخطوات جاهزة تقريبًا",
+        methodLabel: "التكلفة"
+      },
+      male: {
+        brandTitle: "سندك الافتراضي",
+        brandIcon: "🛡️",
+        footer: "سندك الافتراضي — خصوصيتك محفوظة، وكل ما تكتبه يبقى على جهازك حتى تقرر الإرسال بنفسك عبر واتساب.",
+homePill: "خصوصية • راحة • دعم حقيقي",
+        start: "ابدأ الآن",
+        contact: "تواصل مباشرة",
+        planTitle: "طرق التواصل المتاحة",
+        howTitle: "كيف تسير التجربة؟",
+        how1: "اختيار نوع الدعم",
+        how1d: "ابدأ بتحديد نوع الجلسة أو نوع المساندة التي تحتاجها.",
+        how2: "استكمال الحجز",
+        how2d: "اختر طريقة التواصل والوقت المناسب وأجب عن الأسئلة الأساسية.",
+        how3: "إرسال مباشر",
+        how3d: "في النهاية يظهر لك الملخص داخل نفس الصفحة، ثم ينتقل مباشرة إلى واتساب.",
+        step1: "اختر نوع الدعم أو الخدمة",
+        step2: "كيف تفضل التواصل؟",
+        step3: "ما الوقت الأنسب لك؟",
+        step4: "أجب عن ثلاث نقاط قصيرة",
+        step5: "اكتب ملاحظتك الخاصة",
+        step6: "اسمك أو كنيتك",
+        step7: "الملخص النهائي قبل الإرسال",
+        q1: "ما أكثر شيء تحتاجه من الجلسة؟",
+        q2: "هل مررت بتجربة مشابهة من قبل؟",
+        q3: "ما هو شعورك الآن؟",
+        noteLabel: "ملاحظتك الخاصة (اختياري)",
+        nameLabel: "اسمك أو كنيتك (اختياري)",
+        notePlaceholder: "أي تفاصيل أو ظروف أو نقاط تريد إضافتها...",
+        namePlaceholder: "مثال: أحمد / راشد / اسم مختصر...",
+        visitor: "زائر",
+        summaryIntro: "هذا ملخصك النهائي. عند الضغط على زر الإرسال سيتم فتح واتساب مع الرسالة مكتوبة تلقائيًا.",
+        summaryService: "نوع الخدمة المطلوبة",
+        summaryMethod: "طريقة التواصل",
+        summaryTime: "الوقت المناسب",
+        summaryQ1: "أكثر شيء تحتاجه",
+        summaryQ2: "هل مررت بتجربة مشابهة؟",
+        summaryQ3: "شعورك الآن",
+        summaryNote: "ملاحظتك الخاصة",
+        summaryName: "الاسم أو الكنية",
+        next: "التالي",
+        back: "رجوع",
+        finish: "إرسال إلى واتساب الآن",
+        newBooking: "بدء حجز جديد",
+        quickWhats: "💬 واتساب مباشر",
+        faqTitle: "الأسئلة الشائعة",
+        policyTitle: "سياسة الاستخدام",
+        policy1: "المنصة للدعم والمساندة العامة وليست بديلًا عن الجهات الطبية أو النفسية المختصة.",
+        policy2: "البيانات تبقى على جهازك داخل المتصفح، ولا تُرسل إلا عند الضغط على زر واتساب.",
+        policy3: "يمكنك إكمال الخطوات أو التراجع أو إعادة الحجز بسهولة في أي وقت.",
+        emergency: "إذا كانت الحالة طارئة أو فيها أذى للنفس أو للآخرين، تواصل فورًا مع جهة مختصة أو شخص موثوق قريب منك.",
+        toastSaved: "تم حفظ اختيارك والمتابعة.",
+        toastCopied: "تم نسخ الملخص.",
+        toastWhatsapp: "تم فتح واتساب مع الرسالة الجاهزة.",
+        toastQuestions: "يرجى الإجابة على جميع الأسئلة أولًا.",
+        toastNoData: "ابدأ تعبئة الحجز أولًا.",
+        toastReset: "تمت إعادة الحجز من البداية.",
+        quickCopy: "نسخ الملخص",
+        statusReady: "الخطوات جاهزة تقريبًا",
+        methodLabel: "التكلفة"
+      }
+    };
+
+    const SERVICES = {
+      female: [
+        { id: "listen", icon: "🌷", title: "فضفضة ومساندة معنوية", desc: "جلسة استماع هادئة تمنحكِ مساحة آمنة للتعبير." },
+        { id: "decision", icon: "🧭", title: "مساعدة في اتخاذ قرار", desc: "ترتيب الأفكار والخيارات قبل أي خطوة مهمة." },
+        { id: "social", icon: "🤝", title: "دعم خلال موقف اجتماعي", desc: "مساندة قبل أو أثناء موقف يسبب لكِ التوتر أو الحيرة." },
+        { id: "symbolic", icon: "🫶", title: "دور رمزي (أخت / صديقة / سند)", desc: "أسلوب أقرب وودود في المساندة حسب ما يريحكِ." },
+        { id: "calm", icon: "🍃", title: "تفريغ مشاعر وتهدئة", desc: "مساحة أهدأ لتخفيف الضغط وترتيب النفسية." },
+        { id: "motivate", icon: "✨", title: "تحفيز وتعزيز معنوي", desc: "رفع المعنويات وإعادة التوازن والثقة خطوة بخطوة." }
+      ],
+      male: [
+        { id: "listen", icon: "🛋️", title: "فضفضة ومساندة معنوية", desc: "جلسة استماع واضحة تمنحك مساحة آمنة للتعبير." },
+        { id: "decision", icon: "🧭", title: "مساعدة في اتخاذ قرار", desc: "ترتيب الأفكار والخيارات قبل أي خطوة مهمة." },
+        { id: "social", icon: "🤝", title: "دعم خلال موقف اجتماعي", desc: "مساندة قبل أو أثناء موقف يسبب لك التوتر أو الحيرة." },
+        { id: "symbolic", icon: "🫱", title: "دور رمزي (أخ / صديق / سند)", desc: "أسلوب أقرب وأكثر مباشرة في المساندة حسب ما يناسبك." },
+        { id: "calm", icon: "🌿", title: "تفريغ مشاعر وتهدئة", desc: "مساحة أهدأ لتخفيف الضغط وترتيب الحالة النفسية." },
+        { id: "motivate", icon: "⚡", title: "تحفيز وتعزيز معنوي", desc: "رفع المعنويات واستعادة التوازن والثقة تدريجيًا." }
+      ]
+    };
+
+    const METHODS = {
+      female: [
+        { id: "chat", icon: "💬", title: "دردشة واتساب", desc: "رسائل مباشرة وسريعة", price: "4 ر.ع / نصف ساعة" },
+        { id: "call", icon: "🎧", title: "مكالمة صوتية", desc: "مكالمة بعد تأكيد الوقت", price: "7 ر.ع /  ساعة" },
+      ],
+      male: [
+        { id: "chat", icon: "💬", title: "دردشة واتساب", desc: "رسائل مباشرة وسريعة", price: "4 ر.ع / نصف ساعة" },
+        { id: "call", icon: "🎧", title: "مكالمة صوتية", desc: "مكالمة بعد تأكيد الوقت", price: "7 ر.ع /  ساعة" },
+      ]
+    };
+
+    const TIMES = [
+      "الصباح",
+      "بعد الظهر",
+      "ليلًا",
+      "في أقرب وقت ممكن",
+      "تحديد وقت لاحق"
+    ];
+
+    const QUESTIONS = {
+      female: {
+        q1: ["أحتاج لمن يستمع لي فقط", "أحتاج رأيًا أو توجيهًا محددًا", "أحتاج التشجيع والتحفيز", "أحتاج تهدئة وترتيب أفكاري"],
+        q2: ["نعم، وكانت مفيدة لي", "نعم، لكن لم أشعر بالراحة", "لا، هذه أول مرة لي", "أفضل عدم الإجابة"],
+        q3: ["متوترة قليلًا", "أشعر بالحيرة", "مرهقة نفسيًا", "مرتاحـة ومستعدة للحديث"]
+      },
+      male: {
+        q1: ["أحتاج لمن يستمع لي فقط", "أحتاج رأيًا أو توجيهًا محددًا", "أحتاج التشجيع والتحفيز", "أحتاج تهدئة وترتيب أفكاري"],
+        q2: ["نعم، وكانت مفيدة لي", "نعم، لكن لم أشعر بالراحة", "لا، هذه أول مرة لي", "أفضل عدم الإجابة"],
+        q3: ["متوتر قليلًا", "أشعر بالحيرة", "مرهق نفسيًا", "مرتاح ومستعد للحديث"]
+      }
+    };
+
+    const FAQ = {
+      female: [
+        { q: "هل البيانات تُرسل تلقائيًا؟", a: "لا. البيانات تبقى داخل جهازكِ، ولا تُرسل إلا عند الضغط على زر واتساب في النهاية." },
+        { q: "هل أحتاج إلى حساب؟", a: "لا. يمكنكِ بدء الحجز مباشرة بدون تسجيل دخول." },
+        { q: "هل صار التواصل عبر واتساب فقط؟", a: "نعم. النسخة الحالية مبنية لتجعل نهاية المسار إرسالًا مباشرًا إلى واتساب برسالة جاهزة." },
+        { q: "هل أستطيع تغيير اختياراتي أثناء الحجز؟", a: "نعم. يمكنكِ الرجوع لأي خطوة وتعديل الإجابات بسهولة." }
+      ],
+      male: [
+        { q: "هل البيانات تُرسل تلقائيًا؟", a: "لا. البيانات تبقى داخل جهازك، ولا تُرسل إلا عند الضغط على زر واتساب في النهاية." },
+        { q: "هل أحتاج إلى حساب؟", a: "لا. يمكنك بدء الحجز مباشرة بدون تسجيل دخول." },
+        { q: "هل صار التواصل عبر واتساب فقط؟", a: "نعم. النسخة الحالية مبنية لتجعل نهاية المسار إرسالًا مباشرًا إلى واتساب برسالة جاهزة." },
+        { q: "هل أستطيع تغيير اختياراتي أثناء الحجز؟", a: "نعم. يمكنك الرجوع لأي خطوة وتعديل الإجابات بسهولة." }
+      ]
+    };
+
+    const state = {
+      mode: localStorage.getItem(STORAGE.mode) || "female",
+      theme: localStorage.getItem(STORAGE.theme) || "light",
+      tab: localStorage.getItem(STORAGE.tab) || "home",
+      step: 1,
+      data: loadDraft()
+    };
+
+    function emptyData() {
+      return {
+        serviceId: "",
+        methodId: "",
+        time: "",
+        q1: "",
+        q2: "",
+        q3: "",
+        note: "",
+        name: ""
+      };
+    }
+
+    function loadDraft() {
+      try {
+        const raw = localStorage.getItem(STORAGE.draft);
+        return raw ? { ...emptyData(), ...JSON.parse(raw) } : emptyData();
+      } catch {
+        return emptyData();
+      }
+    }
+
+    function saveDraft() {
+      localStorage.setItem(STORAGE.draft, JSON.stringify(state.data));
+    }
+
+    function resetDraft() {
+      state.data = emptyData();
+      saveDraft();
+    }
+
+    function copy() {
+      return COPY[state.mode];
+    }
+
+    function services() {
+      return SERVICES[state.mode];
+    }
+
+    function methods() {
+      return METHODS[state.mode];
+    }
+
+    function faqs() {
+      return FAQ[state.mode];
+    }
+
+    function questions() {
+      return QUESTIONS[state.mode];
+    }
+
+    function esc(v) {
+      return String(v || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function showToast(message) {
+      const t = document.getElementById("toast");
+      t.textContent = message;
+      t.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => t.classList.remove("show"), 1900);
+    }
+
+    function setMode(mode) {
+      state.mode = mode;
+      localStorage.setItem(STORAGE.mode, mode);
+      document.documentElement.setAttribute("data-mode", mode);
+      renderShell();
+      renderView();
+    }
+
+    function toggleTheme() {
+      state.theme = state.theme === "dark" ? "light" : "dark";
+      localStorage.setItem(STORAGE.theme, state.theme);
+      document.documentElement.setAttribute("data-theme", state.theme);
+    }
+
+    function setTab(tab) {
+      state.tab = tab;
+      localStorage.setItem(STORAGE.tab, tab);
+      if (tab === "book") {
+        if (state.step < 1 || state.step > 7) state.step = 1;
+      }
+      renderNav();
+      renderView();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderShell() {
+      const c = copy();
+      document.getElementById("brandIcon").textContent = c.brandIcon;
+      document.getElementById("brandTitle").textContent = c.brandTitle;
+      document.getElementById("brandSubtitle").textContent = c.brandSubtitle;
+      document.getElementById("footerText").textContent = c.footer;
+      document.getElementById("startBtn").textContent = c.start;
+      document.getElementById("quickWhatsappBtn").textContent = c.quickWhats;
+      document.getElementById("femaleBtn").classList.toggle("active", state.mode === "female");
+      document.getElementById("maleBtn").classList.toggle("active", state.mode === "male");
+    }
+
+    function renderNav() {
+      document.querySelectorAll(".nav-btn[data-tab]").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === state.tab);
+      });
+    }
+
+    function renderView() {
+      const view = document.getElementById("view");
+      if (state.tab === "home") view.innerHTML = renderHome();
+      if (state.tab === "book") view.innerHTML = renderBooking();
+      if (state.tab === "faq") view.innerHTML = renderFaq();
+      if (state.tab === "policy") view.innerHTML = renderPolicy();
+      bindDynamicEvents();
+    }
+
+    function renderHome() {
+      const c = copy();
+      return `
+        <section class="hero">
+          <section class="card hero-main">
+            <div class="eyebrow">${c.homePill}</div>
+            <div class="hero-actions">
+              <button class="btn btn-primary" data-action="to-book">${c.start}</button>
+              <button class="btn btn-secondary" data-action="quick-whatsapp">${c.contact}</button>
+            </div>
+            <div class="feature-grid">
+              <article class="feature-card">
+            </div>
+          </section>
+
+          <section class="card">
+            <h3 class="section-title">${c.planTitle}</h3>
+            <div class="plans-grid">
+              ${methods().map(item => `
+                <article class="plan-card">
+                  <div class="mini-icon">${item.icon}</div>
+                  <h3 class="plan-title">${item.title}</h3>
+                  <p class="small-note">${item.desc}</p>
+                  <div style="margin-top:12px;"><span class="price-pill">${c.methodLabel}: ${item.price}</span></div>
+                </article>
+              `).join("")}
+            </div>
+            <div class="note-boxes" style="margin-top:18px;">
+              <article class="info-card">
+                <h3 class="how-title">${c.howTitle}</h3>
+                <div class="how-grid" style="margin-top:14px;">
+                  <article class="how-card">
+                    <div class="mini-icon">1</div>
+                    <h3 class="how-title">${c.how1}</h3>
+                    <p class="small-note">${c.how1d}</p>
+                  </article>
+                  <article class="how-card">
+                    <div class="mini-icon">2</div>
+                    <h3 class="how-title">${c.how2}</h3>
+                    <p class="small-note">${c.how2d}</p>
+                  </article>
+                  <article class="how-card">
+                    <div class="mini-icon">3</div>
+                    <h3 class="how-title">${c.how3}</h3>
+                    <p class="small-note">${c.how3d}</p>
+                  </article>
+                </div>
+              </article>
+            </div>
+          </section>
+        </section>
+      `;
+    }
+
+    function renderBooking() {
+      const c = copy();
+      const percent = (state.step / 7) * 100;
+      return `
+        <section class="wizard-wrap">
+          <section class="card">
+            <div class="progress">
+              <div class="progress-bar"><div class="progress-fill" style="width:${percent}%;"></div></div>
+              <div class="dots">
+                ${Array.from({ length: 7 }, (_, i) => {
+                  const n = i + 1;
+                  const cls = n === state.step ? "dot active" : n < state.step ? "dot done" : "dot";
+                  return `<span class="${cls}">${n}</span>`;
+                }).join("")}
+              </div>
+            </div>
+
+            <div class="step-head">
+              <div>
+                <h3 class="step-title">${getStepTitle()}</h3>
+                <p class="step-subtitle">خطوة واحدة واضحة في كل مرة — بدون تشتيت.</p>
+              </div>
+              <span class="step-pill">${state.step} / 7</span>
+            </div>
+
+            ${renderStepContent()}
+          </section>
+        </section>
+      `;
+    }
+
+    function getStepTitle() {
+      const c = copy();
+      return [c.step1, c.step2, c.step3, c.step4, c.step5, c.step6, c.step7][state.step - 1];
+    }
+
+    function renderStepContent() {
+      const c = copy();
+      const q = questions();
+      const currentMethod = methods().find(m => m.id === state.data.methodId);
+
+      if (state.step === 1) {
+        return `
+          <div class="options-grid">
+            ${services().map(item => `
+              <article class="card-option ${state.data.serviceId === item.id ? "active" : ""}" data-service="${item.id}">
+                <div class="option-top">
+                  <div class="option-main">
+                    <div class="option-icon">${item.icon}</div>
+                    <div>
+                      <div class="option-label">${item.title}</div>
+                      <div class="option-desc">${item.desc}</div>
+                    </div>
+                  </div>
+                  <div class="radio"></div>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      if (state.step === 2) {
+        return `
+          <div class="options-grid">
+            ${methods().map(item => `
+              <article class="card-option ${state.data.methodId === item.id ? "active" : ""}" data-method="${item.id}">
+                <div class="option-top">
+                  <div class="option-main">
+                    <div class="option-icon">${item.icon}</div>
+                    <div>
+                      <div class="option-label">${item.title}</div>
+                      <div class="option-desc">${item.desc}</div>
+                      <div style="margin-top:10px;"><span class="price-pill">${item.price}</span></div>
+                    </div>
+                  </div>
+                  <div class="radio"></div>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+          <div class="actions-row">
+            <button class="btn btn-secondary" data-action="prev-step">${c.back}</button>
+          </div>
+        `;
+      }
+
+      if (state.step === 3) {
+        return `
+          <div class="time-grid">
+            ${TIMES.map(time => `<button class="time-chip ${state.data.time === time ? "active" : ""}" data-time="${esc(time)}">${time}</button>`).join("")}
+          </div>
+          <div class="actions-row">
+            <button class="btn btn-secondary" data-action="prev-step">${c.back}</button>
+          </div>
+        `;
+      }
+
+      if (state.step === 4) {
+        return `
+          <div class="fields">
+            <div class="field">
+              <label>${c.q1}</label>
+              <select id="q1Field">
+                <option value="">اختيار...</option>
+                ${q.q1.map(item => `<option value="${esc(item)}" ${state.data.q1 === item ? "selected" : ""}>${item}</option>`).join("")}
+              </select>
+            </div>
+            <div class="field">
+              <label>${c.q2}</label>
+              <select id="q2Field">
+                <option value="">اختيار...</option>
+                ${q.q2.map(item => `<option value="${esc(item)}" ${state.data.q2 === item ? "selected" : ""}>${item}</option>`).join("")}
+              </select>
+            </div>
+            <div class="field">
+              <label>${c.q3}</label>
+              <select id="q3Field">
+                <option value="">اختيار...</option>
+                ${q.q3.map(item => `<option value="${esc(item)}" ${state.data.q3 === item ? "selected" : ""}>${item}</option>`).join("")}
+              </select>
+            </div>
+          </div>
+          <div class="actions-row">
+            <button class="btn btn-secondary" data-action="prev-step">${c.back}</button>
+            <button class="btn btn-primary" data-action="next-questions">${c.next}</button>
+          </div>
+        `;
+      }
+
+      if (state.step === 5) {
+        return `
+          <div class="fields">
+            <div class="field">
+              <label>${c.noteLabel}</label>
+              <textarea id="noteField" maxlength="800" placeholder="${esc(c.notePlaceholder)}">${esc(state.data.note)}</textarea>
+              <div class="counter"><span id="noteCount">${(state.data.note || "").length}</span>/800</div>
+            </div>
+          </div>
+          <div class="actions-row">
+            <button class="btn btn-secondary" data-action="prev-step">${c.back}</button>
+            <button class="btn btn-primary" data-action="next-step">${c.next}</button>
+          </div>
+        `;
+      }
+
+      if (state.step === 6) {
+        return `
+          <div class="fields">
+            <div class="field">
+              <label>${c.nameLabel}</label>
+              <input id="nameField" type="text" maxlength="70" value="${esc(state.data.name)}" placeholder="${esc(c.namePlaceholder)}" />
+              <p class="inline-help">يمكنكِ / يمكنك كتابة اسم الحقيقي أو اسم مختصر أو كنية فقط.</p>
+            </div>
+          </div>
+          <div class="actions-row">
+            <button class="btn btn-secondary" data-action="prev-step">${c.back}</button>
+            <button class="btn btn-primary" data-action="next-step">عرض الملخص</button>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="summary-grid">
+          <article class="summary-item summary-highlight">
+            <strong>${copy().statusReady}</strong>
+            <div>${c.summaryIntro}</div>
+          </article>
+          <article class="summary-item"><strong>${c.summaryService}</strong><div>${esc(getServiceTitle())}</div></article>
+          <article class="summary-item"><strong>${c.summaryMethod}</strong><div>${esc(currentMethod ? `${currentMethod.title} - ${currentMethod.price}` : "—")}</div></article>
+          <article class="summary-item"><strong>${c.summaryTime}</strong><div>${esc(state.data.time || "—")}</div></article>
+          <article class="summary-item"><strong>${c.summaryQ1}</strong><div>${esc(state.data.q1 || "—")}</div></article>
+          <article class="summary-item"><strong>${c.summaryQ2}</strong><div>${esc(state.data.q2 || "—")}</div></article>
+          <article class="summary-item"><strong>${c.summaryQ3}</strong><div>${esc(state.data.q3 || "—")}</div></article>
+          ${state.data.note ? `<article class="summary-item"><strong>${c.summaryNote}</strong><div>${esc(state.data.note)}</div></article>` : ""}
+          ${state.data.name ? `<article class="summary-item"><strong>${c.summaryName}</strong><div>${esc(state.data.name)}</div></article>` : ""}
+        </div>
+        <div class="actions-row">
+          <button class="btn btn-secondary" data-action="prev-step">${c.back}</button>
+          <button class="btn btn-outline" data-action="copy-summary">${c.quickCopy}</button>
+          <button class="btn btn-whatsapp" data-action="send-whatsapp">${c.finish}</button>
+          <button class="btn btn-outline" data-action="reset-booking">${c.newBooking}</button>
+        </div>
+      `;
+    }
+
+    function renderFaq() {
+      const c = copy();
+      return `
+        <section class="card">
+          <h2 class="section-title">${c.faqTitle}</h2>
+          <div class="faq-list" style="margin-top:14px;">
+            ${faqs().map((item, i) => `
+              <article class="faq-item" data-faq="${i}">
+                <button class="faq-head" data-faq-toggle="${i}">
+                  <span>${item.q}</span>
+                  <span>＋</span>
+                </button>
+                <div class="faq-answer">${item.a}</div>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderPolicy() {
+      const c = copy();
+      return `
+        <section class="card">
+          <h2 class="section-title">${c.policyTitle}</h2>
+          <ul class="policy-list">
+            <li>${c.policy1}</li>
+            <li>${c.policy2}</li>
+            <li>${c.policy3}</li>
+            <li>${c.emergency}</li>
+          </ul>
+          <div class="actions-row" style="margin-top:18px;">
+            <button class="btn btn-whatsapp" data-action="quick-whatsapp">${c.quickWhats}</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function getServiceTitle() {
+      return services().find(item => item.id === state.data.serviceId)?.title || "—";
+    }
+
+    function buildMessage() {
+      const c = copy();
+      const method = methods().find(item => item.id === state.data.methodId);
+      const now = new Date().toLocaleString("ar-OM");
+      return `${c.brandTitle}
+طلب جديد عبر الموقع
+
+الفئة المختارة: ${state.mode === "female" ? "أنثى" : "رجل"}
+${c.summaryService}: ${getServiceTitle()}
+${c.summaryMethod}: ${method ? `${method.title} - ${method.price}` : "—"}
+${c.summaryTime}: ${state.data.time || "—"}
+
+${c.summaryQ1}: ${state.data.q1 || "—"}
+${c.summaryQ2}: ${state.data.q2 || "—"}
+${c.summaryQ3}: ${state.data.q3 || "—"}${state.data.note ? `
+
+${c.summaryNote}: ${state.data.note}` : ""}${state.data.name ? `
+
+${c.summaryName}: ${state.data.name}` : ""}
+
+وقت الإرسال: ${now}`;
+    }
+
+    async function copySummary() {
+      if (!state.data.serviceId && !state.data.methodId && !state.data.time && !state.data.q1 && !state.data.q2 && !state.data.q3 && !state.data.note && !state.data.name) {
+        showToast(copy().toastNoData);
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(buildMessage());
+        showToast(copy().toastCopied);
+      } catch {
+        showToast("تعذر النسخ في هذا المتصفح.");
+      }
+    }
+
+    function sendToWhatsApp() {
+      if (!state.data.serviceId || !state.data.methodId || !state.data.time || !state.data.q1 || !state.data.q2 || !state.data.q3) {
+        setTab("book");
+        state.step = 1;
+        renderView();
+        showToast(copy().toastNoData);
+        return;
+      }
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
+      window.open(url, "_blank");
+      showToast(copy().toastWhatsapp);
+    }
+
+    function bindDynamicEvents() {
+      document.querySelectorAll("[data-action='to-book']").forEach(btn => btn.onclick = () => setTab("book"));
+      document.querySelectorAll("[data-action='quick-whatsapp']").forEach(btn => btn.onclick = () => sendToWhatsApp());
+      document.querySelectorAll("[data-action='prev-step']").forEach(btn => btn.onclick = () => stepTo(state.step - 1));
+      document.querySelectorAll("[data-action='next-step']").forEach(btn => btn.onclick = () => stepTo(state.step + 1));
+      document.querySelectorAll("[data-action='copy-summary']").forEach(btn => btn.onclick = () => copySummary());
+      document.querySelectorAll("[data-action='send-whatsapp']").forEach(btn => btn.onclick = () => sendToWhatsApp());
+      document.querySelectorAll("[data-action='reset-booking']").forEach(btn => btn.onclick = () => {
+        resetDraft();
+        state.step = 1;
+        renderView();
+        showToast(copy().toastReset);
+      });
+
+      document.querySelectorAll("[data-service]").forEach(item => {
+        item.onclick = () => {
+          state.data.serviceId = item.dataset.service;
+          saveDraft();
+          stepTo(2);
+          showToast(copy().toastSaved);
+        };
+      });
+
+      document.querySelectorAll("[data-method]").forEach(item => {
+        item.onclick = () => {
+          state.data.methodId = item.dataset.method;
+          saveDraft();
+          stepTo(3);
+          showToast(copy().toastSaved);
+        };
+      });
+
+      document.querySelectorAll("[data-time]").forEach(item => {
+        item.onclick = () => {
+          state.data.time = item.dataset.time;
+          saveDraft();
+          stepTo(4);
+          showToast(copy().toastSaved);
+        };
+      });
+
+      const q1 = document.getElementById("q1Field");
+      const q2 = document.getElementById("q2Field");
+      const q3 = document.getElementById("q3Field");
+      if (q1 && q2 && q3) {
+        q1.onchange = () => { state.data.q1 = q1.value; saveDraft(); };
+        q2.onchange = () => { state.data.q2 = q2.value; saveDraft(); };
+        q3.onchange = () => { state.data.q3 = q3.value; saveDraft(); };
+      }
+
+      document.querySelectorAll("[data-action='next-questions']").forEach(btn => {
+        btn.onclick = () => {
+          state.data.q1 = document.getElementById("q1Field")?.value || "";
+          state.data.q2 = document.getElementById("q2Field")?.value || "";
+          state.data.q3 = document.getElementById("q3Field")?.value || "";
+          if (!state.data.q1 || !state.data.q2 || !state.data.q3) {
+            showToast(copy().toastQuestions);
+            return;
+          }
+          saveDraft();
+          stepTo(5);
+        };
+      });
+
+      const noteField = document.getElementById("noteField");
+      if (noteField) {
+        noteField.oninput = () => {
+          state.data.note = noteField.value;
+          saveDraft();
+          const cnt = document.getElementById("noteCount");
+          if (cnt) cnt.textContent = noteField.value.length;
+        };
+      }
+
+      const nameField = document.getElementById("nameField");
+      if (nameField) {
+        nameField.oninput = () => {
+          state.data.name = nameField.value;
+          saveDraft();
+        };
+      }
+
+      document.querySelectorAll("[data-faq-toggle]").forEach(btn => {
+        btn.onclick = () => btn.closest(".faq-item").classList.toggle("open");
+      });
+    }
+
+    function stepTo(step) {
+      state.step = Math.min(7, Math.max(1, step));
+      renderView();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function bindStaticEvents() {
+      document.querySelectorAll(".nav-btn[data-tab]").forEach(btn => {
+        btn.onclick = () => setTab(btn.dataset.tab);
+      });
+      document.getElementById("femaleBtn").onclick = () => setMode("female");
+      document.getElementById("maleBtn").onclick = () => setMode("male");
+      document.getElementById("themeBtn").onclick = () => toggleTheme();
+      document.getElementById("startBtn").onclick = () => setTab("book");
+      document.getElementById("quickWhatsappBtn").onclick = () => sendToWhatsApp();
+    }
+
+    function init() {
+      document.documentElement.setAttribute("data-mode", state.mode);
+      document.documentElement.setAttribute("data-theme", state.theme);
+      renderShell();
+      renderNav();
+      bindStaticEvents();
+      renderView();
+    }
+
+    init();
+  </script>
+</body>
+</html>
